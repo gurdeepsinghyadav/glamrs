@@ -1,31 +1,31 @@
- <!DOCTYPE html>
-     <html lang="en">
-     <head>
-         <meta charset="UTF-8">
-         <title>Redirecting...</title>
-         <script type="text/javascript">
-             // Function to perform URL redirection
-             function redirect() {
-                 const path = window.location.pathname; // Get the current path
-                 
-                 // Define path-to-URL mapping
-                 const redirects = {
-                     '/1': 'www.glamrs.com',
-                     '/2': 'www.purplle.com',
-                     // Add more paths and URLs as needed
-                 };
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+        // Function to perform URL redirection
+        function redirect() {
+            const path = window.location.pathname.toLowerCase(); // Get the current path and normalize cases
 
-                 // Perform redirect if a matching path is found
-                 if (redirects[path]) {
-                     window.location.href = redirects[path];
-                 } else {
-                     // Optional: Redirect to a default URL or show an error message
-                     window.location.href = "www.google.com";
-                 }
-             }
-         </script>
-     </head>
-     <body onload="redirect()">
-         <p>If you are not redirected, click <a href="www.purplle.com">here</a>.</p>
-     </body>
-     </html>
+            // Define path-to-URL mapping
+            const redirects = {
+                '/path1': 'https://purplle.com',
+                '/path2': 'https://glamrs.com',
+                // Add more paths and URLs as needed
+            };
+
+            // Perform redirect if a matching path is found
+            if (redirects[path]) {
+                window.location.replace(redirects[path]);
+            } else {
+                // Optional: Redirect to a default URL or display a message
+                document.getElementById('message').innerText = 'No redirect found for this path.';
+            }
+        }
+    </script>
+</head>
+<body onload="redirect()">
+    <p id="message">If you are not redirected, click <a href="https://google.com">here</a>.</p>
+</body>
+</html>
